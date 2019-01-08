@@ -11,14 +11,32 @@
 
     <name>citycorp</name>
 
-    <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
+    <properties>        
+        <!--<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
         
         <jersey.version>2.20</jersey.version>
         <jaxrs.version>2.0.1</jaxrs.version>
-        <gson.version>2.6</gson.version>
+        
+        <lyo.core.version>2.2.0</lyo.core.version>
+        <lyo.server.version>2.2.0</lyo.server.version>
+        
+        <gson.version>2.6</gson.version>        
     </properties>
+
+        
+    <repositories>
+        <repository>
+            <id>lyo-releases</id>
+            <name>lyo-releases repository</name>
+            <url>https://repo.eclipse.org/content/repositories/lyo-releases/</url>
+        </repository>
+    </repositories>
+
 
     <dependencies>
         
@@ -47,6 +65,29 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.6</version>
         </dependency>
+        
+        <!-- Eclipse LYO -->
+        <dependency>
+            <groupId>org.eclipse.lyo.oslc4j.core</groupId>
+            <artifactId>oslc4j-core</artifactId>
+            <version>${lyo.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.lyo.oslc4j.core</groupId>
+            <artifactId>oslc4j-jena-provider</artifactId>
+            <version>${lyo.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.lyo.oslc4j.core</groupId>
+            <artifactId>oslc4j-wink</artifactId>
+            <version>${lyo.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.lyo.oslc4j.core</groupId>
+            <artifactId>oslc4j-json4j-provider</artifactId>
+            <version>${lyo.core.version}</version>
+        </dependency>
+        
     </dependencies>
 
     <build>
@@ -56,7 +97,7 @@
         <finalName>CityCorp</finalName>
         
         <plugins>
-            <plugin>
+            <!--            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
@@ -67,7 +108,7 @@
                         <endorseddirs>${endorsed.dir}</endorseddirs>
                     </compilerArguments>
                 </configuration>
-            </plugin>
+            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -82,7 +123,7 @@
                 </configuration>
             </plugin>
             
-<!--            <plugin>
+            <!--            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>

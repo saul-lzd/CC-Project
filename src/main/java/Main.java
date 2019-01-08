@@ -1,6 +1,5 @@
 
 import com.sun.net.httpserver.HttpServer;
-import entities.User;
 import java.net.URI;
 import javax.ws.rs.core.UriBuilder;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
@@ -19,13 +18,16 @@ public class Main {
     private static final String HOST = "http://localhost/";
 
     public static void main(String[] args) {      
-        System.out.println("Initializing server...");
+        System.out.println("::: Initializing server.");
 
         URI baseUri = UriBuilder.fromUri(HOST).port(PORT).build();
+        
         ResourceConfig config = new ResourceConfig(Resource.class);
+//        ResourceConfig config = new ResourceConfig(OSLCResource.class);
+        
         HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
         
-        System.out.println("Server started");
+        System.out.println("::: Server started.");
     }
 
 }
