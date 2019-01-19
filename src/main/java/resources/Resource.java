@@ -1,6 +1,7 @@
 package resources;
 
 import dao.Query;
+import dao.UserDAO;
 import entities.User;
 import java.sql.SQLException;
 import javax.ws.rs.GET;
@@ -28,12 +29,12 @@ public class Resource extends AbstractResource {
     }
 
     @GET
-    @Path("/user/{name}")
+    @Path("/user/{id}")
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-    public Response get(@PathParam("name") String name) {
+    public Response get(@PathParam("id") String id) {
 
         try {
-            User user = Query.findUserByName(name);
+            User user = UserDAO.findById(Integer.parseInt(id));
 
             if (user == null) {
                 response = buildResponse("User not found", Response.Status.BAD_REQUEST);

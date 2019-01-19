@@ -1,6 +1,8 @@
 
 import com.sun.net.httpserver.HttpServer;
+import dao.Derby;
 import java.net.URI;
+import java.sql.SQLException;
 import javax.ws.rs.core.UriBuilder;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -17,17 +19,27 @@ public class Main {
     private static final int PORT = 8084;
     private static final String HOST = "http://localhost/";
 
-    public static void main(String[] args) {      
-        System.out.println("::: Initializing server.");
-
-        URI baseUri = UriBuilder.fromUri(HOST).port(PORT).build();
-        
-        ResourceConfig config = new ResourceConfig(Resource.class);
-//        ResourceConfig config = new ResourceConfig(OSLCResource.class);
-        
-        HttpServer server = JdkHttpServerFactory.createHttpServer(baseUri, config);
-        
-        System.out.println("::: Server started.");
+    public static void main(String[] args) {
+        try {
+            startHttpServer();
+            startDerbyDB();
+            System.out.println(":::CityCorp Project ready:::");
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
+    private static void startHttpServer() {
+        System.out.println("Initializing HTTP server...");
+        URI baseUri = UriBuilder.fromUri(HOST).port(PORT).build();
+        ResourceConfig config = new ResourceConfig(Resource.class); // OSLCResource        
+        JdkHttpServerFactory.createHttpServer(baseUri, config);
+        System.out.println("Server started!");
+    }
+
+    private static void startDerbyDB() throws SQLException {
+        System.out.println("Initializing Derby...");
+        Derby.init();
+        System.out.println("Derby is running!");
+    }
 }
