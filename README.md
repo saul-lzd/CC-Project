@@ -36,13 +36,14 @@ The DB files will be stored in the root of this project
 
 
 # Console Output: 
-
-
-::: Initializing server.
-ene 08, 2019 2:23:20 PM org.glassfish.jersey.internal.Errors logErrors
+Initializing HTTP server...
+ene 19, 2019 10:37:46 AM org.glassfish.jersey.internal.Errors logErrors
 WARNING: The following warnings have been detected: WARNING: The (sub)resource method init in resources.Resource contains empty path annotation.
- 
-::: Server started.
+
+Server started!
+Initializing Derby...
+Derby is running!
+:::CityCorp Project ready:::
 
 
 #-----------------------------------------------------------------------
@@ -71,13 +72,3 @@ curl --request GET http://localhost:8084/resources/user/1
         2.2.1 If tables already exists, log will display a message and tables won't be created
     2.3 Insert 5 default users to User Table
         2.3.1 For the second time this project is executed, default users won't be inserted
-
-
-
-
-#-----------------------------------------------------------------------
-# OSLC
-#-----------------------------------------------------------------------
-
-# The class OSLCResource includes a brief introduction (non-functional)
-
