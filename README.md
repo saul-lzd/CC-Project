@@ -29,10 +29,10 @@ The DB files will be stored in the root of this project
 
 
 # Compile project
-mvn clean install dependency:copy-dependencies
+mvn clean install
 
 # Run project
-java -cp target/CityCorp.jar;target/dependency/* Main
+mvn exec:java -Dexec.mainClass="Main"
 
 
 # Console Output: 
@@ -63,10 +63,11 @@ curl --request GET http://localhost:8084/resources/user/1
 curl --request DELETE http://localhost:8084/resources/user/1
 
 # Insert new user
-curl -d '{"userId": 10, "name": "user_10", "password": "password_10"}' -H "Content-Type: application/json" -X POST http://localhost:8084/resources/user/
+curl --header "Content-Type:application/json" --data '{"userId": 10, "name": "user_10", "password": "password_10"}' --request POST http://localhost:8084/resources/user/
 
 # Update user
-curl -d '{"userId": 10, "name": "user_10", "password": "password_10"}' -H "Content-Type: application/json" -X PUT http://localhost:8084/resources/user/
+curl --header "Content-Type:application/json" --data '{"userId": 10, "name": "user_10", "password": "password_10"}' --request PUT http://localhost:8084/resources/user/
+
 
 
 
