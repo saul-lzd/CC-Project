@@ -64,6 +64,7 @@ public class Derby {
         }
 
         try {
+            // Insert default users
             UserDAO.insertDefaults();
         } catch (SQLException ex) {
             System.out.println("Default users already exists.");

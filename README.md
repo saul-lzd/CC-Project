@@ -51,7 +51,7 @@ Derby is running!
 #-----------------------------------------------------------------------
 
 # To call services from a browser use following links
-http://localhost:8084/resources
+http://localhost:8084/resources/user/
 http://localhost:8084/resources/user/1
 
 
@@ -59,6 +59,48 @@ http://localhost:8084/resources/user/1
 # To execute services from command line with cURL
 curl --request GET http://localhost:8084/resources
 curl --request GET http://localhost:8084/resources/user/1
+
+
+
+#-----------------------------------------------------------------------
+# REQUEST EXAMPLES
+#-----------------------------------------------------------------------
+
+# Get all users
+http://localhost:8084/resources/user
+
+# Find user by id
+http://localhost:8084/resources/user/1
+
+# Delete user by Id
+# DELETE Method
+http://localhost:8084/resources/user/1
+
+
+# POST: Create new user 
+# PUT: Update user
+http://localhost:8084/resources/user
+
+#JSON:
+{
+    "name": "user_10",
+    "password": "password10",
+    "userId": 10
+}
+
+
+
+
+
+#-----------------------------------------------------------------------
+# TEST SERVICES
+#-----------------------------------------------------------------------
+
+
+
+
+
+
 
 
 #-----------------------------------------------------------------------
