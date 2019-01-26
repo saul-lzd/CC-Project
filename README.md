@@ -29,10 +29,10 @@ The DB files will be stored in the root of this project
 
 
 # Compile project
-> mvn clean install dependency:copy-dependencies
+mvn clean install dependency:copy-dependencies
 
 # Run project
-> java -cp target/CityCorp.jar;target/dependency/* Main
+java -cp target/CityCorp.jar;target/dependency/* Main
 
 
 # Console Output: 
@@ -47,24 +47,32 @@ Derby is running!
 
 
 #-----------------------------------------------------------------------
-# TEST SERVICES
+# HOW TO TEST SERVICES?
 #-----------------------------------------------------------------------
 
-# To call services from a browser use following links
-http://localhost:8084/resources/user/
-http://localhost:8084/resources/user/1
+# WITH CURL
+#-----------
 
+# Get all users
+curl --request GET http://localhost:8084/resources/user/
 
-
-# To execute services from command line with cURL
-curl --request GET http://localhost:8084/resources
+# Get user by Id
 curl --request GET http://localhost:8084/resources/user/1
 
+# Delete user by Id
+curl --request DELETE http://localhost:8084/resources/user/1
+
+# Insert new user
+curl -d '{"userId": 10, "name": "user_10", "password": "password_10"}' -H "Content-Type: application/json" -X POST http://localhost:8084/resources/user/
+
+# Update user
+curl -d '{"userId": 10, "name": "user_10", "password": "password_10"}' -H "Content-Type: application/json" -X PUT http://localhost:8084/resources/user/
 
 
-#-----------------------------------------------------------------------
-# REQUEST EXAMPLES
-#-----------------------------------------------------------------------
+
+# WITH POSTMAN / FROM A BROWSER
+#---------------------------------------
+
 
 # Get all users
 http://localhost:8084/resources/user
@@ -81,24 +89,14 @@ http://localhost:8084/resources/user/1
 # PUT: Update user
 http://localhost:8084/resources/user
 
+
+
 #JSON:
 {
     "name": "user_10",
     "password": "password10",
     "userId": 10
 }
-
-
-
-
-
-#-----------------------------------------------------------------------
-# TEST SERVICES
-#-----------------------------------------------------------------------
-
-
-
-
 
 
 
