@@ -26,7 +26,7 @@ public class Derby {
 
     protected static Connection connection;
     //private static String dbUrl = "jdbc:derby:." + File.separator + "database;create=true";
-    private static String dbUrl = "jdbc:derby://cc_db" + File.separator + "database;create=true";
+    private static String dbUrl = "jdbc:derby:database" + File.separator + "db;create=true";
 
     public static void init() throws SQLException {
         connect();
