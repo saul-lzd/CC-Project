@@ -25,7 +25,8 @@ public class Derby {
     private static final String QUERY_TABLE_REQUIREMENT = "create table requirement (requirement_id INT primary key, name VARCHAR (45), description VARCHAR(200), created_by INT, type VARCHAR(45), content VARCHAR(250))";
 
     protected static Connection connection;
-    private static String dbUrl = "jdbc:derby:." + File.separator + "database;create=true";
+    //private static String dbUrl = "jdbc:derby:." + File.separator + "database;create=true";
+    private static String dbUrl = "jdbc:derby://cc_db" + File.separator + "database;create=true";
 
     public static void init() throws SQLException {
         connect();
