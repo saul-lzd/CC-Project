@@ -25,6 +25,7 @@ public class Main {
             System.out.println(":::CityCorp Project ready:::");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
