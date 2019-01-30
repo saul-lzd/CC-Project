@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.ws.rs.core.UriBuilder;
 import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import resources.CORSFilter;
 import resources.Resource;
 
 /**
@@ -32,7 +33,9 @@ public class Main {
     private static void startHttpServer() {
         System.out.println("Initializing HTTP server...");
         URI baseUri = UriBuilder.fromUri(HOST).port(PORT).build();
-        ResourceConfig config = new ResourceConfig(Resource.class); // OSLCResource        
+        
+        ResourceConfig config = new ResourceConfig(Resource.class);
+        config.register(new CORSFilter());
         JdkHttpServerFactory.createHttpServer(baseUri, config);
         System.out.println("Server started!");
     }
