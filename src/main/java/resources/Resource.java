@@ -46,12 +46,12 @@ public class Resource extends AbstractResource {
                 response = buildResponse(users, Response.Status.OK);
             }
         } catch (SQLException ex) {
-                response = buildResponse(ex.getMessage(), Response.Status.BAD_REQUEST);
+            response = buildResponse(ex.getMessage(), Response.Status.BAD_REQUEST);
         }
 
         return response;
-    } 
-    
+    }
+
     @GET
     @Path("/user/{id}")
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
@@ -66,13 +66,12 @@ public class Resource extends AbstractResource {
                 response = buildResponse(user, Response.Status.OK);
             }
         } catch (SQLException ex) {
-                response = buildResponse(ex.getMessage(), Response.Status.BAD_REQUEST);
+            response = buildResponse(ex.getMessage(), Response.Status.BAD_REQUEST);
         }
 
         return response;
-    }  
-    
-    
+    }
+
     @POST
     @Path("/user/")
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
@@ -80,7 +79,8 @@ public class Resource extends AbstractResource {
     public Response insertUser(User user) {
 
         try {
-            UserDAO.insert(user);                        
+            
+            UserDAO.insert(user);
 
             if (user == null) {
                 response = buildResponse("User not found", Response.Status.BAD_REQUEST);
@@ -88,21 +88,21 @@ public class Resource extends AbstractResource {
                 response = buildResponse(user, Response.Status.CREATED);
             }
         } catch (SQLException ex) {
-                response = buildResponse(ex.getMessage(), Response.Status.BAD_REQUEST);
+            response = buildResponse(ex.getMessage(), Response.Status.BAD_REQUEST);
         }
 
         return response;
-    }         
-    
-    
+    }
+
     @PUT
-    @Path("/user/")
+    @Path("/user/{id}")
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     @Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
-    public Response updatetUser(User user) {
+    public Response updatetUser(@PathParam("id") String id, User user) {
 
         try {
-            UserDAO.update(user);
+            
+            UserDAO.update(id, user);
 
             if (user == null) {
                 response = buildResponse("User not found", Response.Status.BAD_REQUEST);
@@ -110,12 +110,12 @@ public class Resource extends AbstractResource {
                 response = buildResponse(user, Response.Status.CREATED);
             }
         } catch (SQLException ex) {
-                response = buildResponse(ex.getMessage(), Response.Status.BAD_REQUEST);
+            response = buildResponse(ex.getMessage(), Response.Status.BAD_REQUEST);
         }
 
         return response;
-    }                 
-    
+    }
+
     @DELETE
     @Path("/user/{id}")
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
@@ -123,15 +123,15 @@ public class Resource extends AbstractResource {
     public Response deleteUser(@PathParam("id") String id) {
 
         try {
-            UserDAO.deleteById(id);
-
-            response = buildResponse("User deleted", Response.Status.OK);
             
+            UserDAO.deleteById(id);
+            response = buildResponse("User deleted", Response.Status.NO_CONTENT);
+
         } catch (SQLException ex) {
-                response = buildResponse(ex.getMessage(), Response.Status.BAD_REQUEST);
+            response = buildResponse(ex.getMessage(), Response.Status.BAD_REQUEST);
         }
 
         return response;
-    }                 
+    }
 
 }

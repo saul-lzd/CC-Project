@@ -82,9 +82,9 @@ public class UserDAO extends Derby {
     }
     
     
-    public static void update(User user) throws SQLException {
+    public static void update(String userId, User user) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            String query = "update users set user_id = @userId, name = '@username', password = '@password' where user_id = @userId";
+            String query = "update users set user_id = @userId, name = '@username', password = '@password' where user_id =" + userId;
             query = query.replace("@userId", String.valueOf(user.getUserId()));
             query = query.replace("@username", user.getName());
             query = query.replace("@password", user.getPassword());
