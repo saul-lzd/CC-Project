@@ -5,14 +5,10 @@
  */
 package dao;
 
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.apache.commons.io.IOUtils;
 
 /**
  *
@@ -26,8 +22,10 @@ public class Derby {
 
     protected static Connection connection;
     //private static String dbUrl = "jdbc:derby:." + File.separator + "database;create=true";
-    private static String dbUrl = "jdbc:derby:database" + File.separator + "db";
-//    private static String dbUrl = "jdbc:derby:;databaseName=localDB";
+    //private static String dbUrl = "jdbc:derby:;databaseName=memory:database;create=true";
+    //private static String dbUrl = "jdbc:derby:;database" + File.separator + "db";
+    private static String dbUrl = "jdbc:derby:LocalDB;create=true";
+    
 
     public static void init() throws SQLException {
         connect();
