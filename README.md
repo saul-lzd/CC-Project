@@ -65,8 +65,9 @@ curl --request DELETE http://localhost:8084/resources/user/1
 # Insert new user
 curl --header "Content-Type:application/json" --data '{"userId": 10, "name": "user_10", "password": "password_10"}' --request POST http://localhost:8084/resources/user/
 
-# Update user
-curl --header "Content-Type:application/json" --data '{"userId": 10, "name": "user_10", "password": "password_10"}' --request PUT http://localhost:8084/resources/user/
+# Update user. 
+# Replace the argument {ID} by the user id to be updated
+curl --header "Content-Type:application/json" --data '{"name": "user_10", "password": "password_10"}' --request PUT http://localhost:8084/resources/user/{ID}
 
 
 
